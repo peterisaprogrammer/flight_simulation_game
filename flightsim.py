@@ -58,7 +58,7 @@ class Game:
     ring_list = []
     #flak_list = []
     flak_barrel_list = []
-    ring_center_distance = 1  # 1 is hard, 10 is super easy
+    ring_center_distance = 4  # 1 is hard, 10 is super easy
     # UI widgets, initialized in function main()
     vlist = [] # list for ground vertices
     label_dt = None
@@ -663,8 +663,7 @@ def slider_delay(s):
     Game.label_delay.text = f"{Game.camera_delay:.2f}"
 
 def create_widgets():
-    Game.scene1.append_to_title(" keys: engine: 1=full 2=more 3=less 4=off. flight controls: WASDQE gun: Space bomb: Ctrl")
-    Game.scene1.append_to_title(" or use first joystick")
+    Game.scene1.append_to_title(" keys: engine: 1=full 24=off. flight controls: WASDQE")
     Game.scene1.append_to_caption("rotation speed: ")
     v.slider(bind=slider_rotation, min=1, max=200, step=0.1, value=Game.rotation)
     Game.label_rotation = v.wtext(text=f"{Game.rotation}")
@@ -926,6 +925,12 @@ def main():
             elif joystick.get_hat(0)[0] == 1:
                 camera_x_angle += 0.25
                 camera_change = True
+            #if joystick.get_hat(0)[1] == -1:
+            #    camera_y_angle -= 0.25
+            #    camera_change = True
+            #elif joystick.get_hat(0)[1] == 1:
+            #    camera_y_angle += 0.25
+            #    camera_change = True
 
 
 if __name__ == "__main__":
